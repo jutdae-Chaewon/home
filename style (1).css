@@ -1,0 +1,133 @@
+:root{
+  --paper:#FBFAF7;
+  --ink:#16181C;
+  --ink-2:#5C6068;
+  --ink-3:#9AA0A8;
+  --rule:#E2E0DA;
+  --up:#D6303A;      /* 국내 시장 관례: 상승·프리미엄 = 빨강 */
+  --down:#1B5FCC;    /* 하락·역프리미엄 = 파랑 */
+  --up-soft:#FBECEC;
+  --down-soft:#E9F0FC;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:Pretendard,-apple-system,BlinkMacSystemFont,sans-serif;
+  line-height:1.65; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:960px; margin:0 auto; padding:0 24px;}
+.num{font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums;}
+
+header{padding:72px 0 48px; border-bottom:1px solid var(--rule);}
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink-3); margin:0 0 20px;
+}
+h1{font-size:clamp(28px,5vw,44px); line-height:1.25; font-weight:700; margin:0 0 16px; letter-spacing:-.02em;}
+h1 em{font-style:normal;}
+.lede{font-size:17px; color:var(--ink-2); max-width:52ch; margin:0;}
+
+section{padding:56px 0; border-bottom:1px solid var(--rule);}
+h2{font-size:13px; font-family:'IBM Plex Mono',monospace; letter-spacing:.12em;
+   text-transform:uppercase; color:var(--ink-3); font-weight:500; margin:0 0 6px;}
+.h2sub{font-size:22px; font-weight:600; margin:0 0 32px; letter-spacing:-.01em;}
+
+/* 시그니처: 패리티(0%)를 기준으로 오늘의 이탈을 보여주는 축 */
+.gauge{margin:8px 0 40px;}
+.gauge-top{display:flex; align-items:flex-end; gap:16px; flex-wrap:wrap; margin-bottom:28px;}
+.big{font-size:clamp(46px,10vw,76px); font-weight:500; line-height:1; letter-spacing:-.03em;}
+.badge{font-size:13px; font-weight:600; padding:6px 14px; border-radius:999px;}
+.axis{position:relative; height:64px; border-top:1px solid var(--rule);}
+.tick{position:absolute; top:0; width:1px; height:10px; background:var(--ink-3); opacity:.35;}
+.tick.zero{height:64px; width:1px; background:var(--ink); opacity:.85;}
+.tick-lab{position:absolute; top:14px; transform:translateX(-50%);
+          font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-3); white-space:nowrap;}
+.marker{position:absolute; top:-9px; width:3px; height:36px; border-radius:2px;}
+.marker-lab{position:absolute; top:-32px; transform:translateX(-50%);
+            font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:500; white-space:nowrap;}
+.band{position:absolute; top:26px; height:8px; background:var(--ink); opacity:.10;}
+
+.cards{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--rule);
+       border:1px solid var(--rule);}
+.card{background:var(--paper); padding:22px 20px;}
+.card .k{font-size:12px; color:var(--ink-3); margin:0 0 10px; letter-spacing:.02em;}
+.card .v{font-size:26px; font-weight:500; margin:0; letter-spacing:-.01em;}
+.card .n{font-size:12px; color:var(--ink-3); margin:6px 0 0;}
+
+.chart{position:relative; height:320px; margin-bottom:12px;}
+.chart.short{height:240px;}
+.caption{font-size:13px; color:var(--ink-2); margin:0; max-width:60ch;}
+
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:40px;}
+
+.controls{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-bottom:36px;}
+.ctl label{display:flex; justify-content:space-between; align-items:baseline;
+           font-size:13px; color:var(--ink-2); margin-bottom:10px;}
+.ctl label b{font-family:'IBM Plex Mono',monospace; font-size:16px; font-weight:500; color:var(--ink);}
+input[type=range]{width:100%; accent-color:var(--ink); height:22px;}
+input[type=range]:focus-visible{outline:2px solid var(--up); outline-offset:3px;}
+
+.result{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule);
+        border:1px solid var(--rule); margin-bottom:20px;}
+
+table{width:100%; border-collapse:collapse; font-size:14px;}
+th,td{text-align:right; padding:9px 8px; border-bottom:1px solid var(--rule);}
+th:first-child,td:first-child{text-align:left;}
+th{font-size:12px; color:var(--ink-3); font-weight:500;}
+td.num{font-family:'IBM Plex Mono',monospace;}
+
+footer{padding:48px 0 72px; font-size:13px; color:var(--ink-2);}
+footer dl{display:grid; grid-template-columns:110px 1fr; gap:8px 20px; margin:0 0 28px;}
+footer dt{color:var(--ink-3);}
+footer dd{margin:0;}
+.disclaimer{padding:16px 18px; background:#F2F0EA; border-radius:4px; max-width:64ch;}
+
+#error{display:none; padding:20px; background:var(--up-soft); border-left:3px solid var(--up);
+       font-size:14px; margin:40px 0;}
+#error code{background:#fff; padding:2px 6px; font-family:'IBM Plex Mono',monospace; font-size:13px;}
+
+@media (max-width:720px){
+  .cards,.result{grid-template-columns:1fr 1fr;}
+  .grid2,.controls{grid-template-columns:1fr; gap:32px;}
+  header{padding:48px 0 36px;}
+  section{padding:40px 0;}
+}
+@media (prefers-reduced-motion:no-preference){
+  .marker{transition:left .35s ease;}
+}
+
+/* ---------------------------------------------------------------
+   스크롤 리빌 — JS가 <html>에 .js를 붙였을 때만 숨김 상태로 시작
+   (JS가 막히면 아무것도 안 숨겨져서 내용은 항상 읽을 수 있음)
+   --------------------------------------------------------------- */
+.js .reveal{
+  opacity:0;
+  transform:translateY(18px);
+  transition:opacity .7s cubic-bezier(.16,.8,.3,1),
+             transform .7s cubic-bezier(.16,.8,.3,1);
+  transition-delay:var(--d,0s);
+}
+.js .reveal.in{opacity:1; transform:none;}
+
+/* 제목은 조금 더 크게 밀어 올려서 무게감을 준다 */
+.js h1.reveal{transform:translateY(28px);}
+.js .big.reveal{transform:translateY(24px);}
+
+/* 헤더 밑줄은 글자가 자리잡은 뒤 좌에서 우로 그어진다 */
+h1 em{
+  display:inline-block; position:relative;
+  border-bottom:none; padding-bottom:2px;
+}
+h1 em::after{
+  content:""; position:absolute; left:0; bottom:0;
+  width:100%; height:3px; background:var(--up);
+  transform:scaleX(0); transform-origin:left;
+  transition:transform .8s cubic-bezier(.16,.8,.3,1) .55s;
+}
+.js h1.in em::after,
+html:not(.js) h1 em::after{transform:scaleX(1);}
+
+@media (prefers-reduced-motion:reduce){
+  .js .reveal{opacity:1; transform:none; transition:none;}
+  h1 em::after{transform:scaleX(1); transition:none;}
+}
